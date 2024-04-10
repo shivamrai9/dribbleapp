@@ -21,7 +21,7 @@ const SignupForm = () => {
         try{
             setLoging(true);
             reset();
-            let res = await axios.post('http://localhost:8000/auth/register', register)
+            let res = await axios.post('https://dribble-back.onrender.com/auth/register', register)
             console.log(res)
             if(res.status === 201){
                 navigate('/profile');

@@ -32,7 +32,7 @@ const ProfileInfo = () => {
     function uploadSingleImage(base64) {
         setLoading(true);
         axios
-            .post("http://localhost:8000/user/uploadImage", { image: base64 })
+            .post("https://dribble-back.onrender.com/user/uploadImage", { image: base64 })
             .then((res) => {
                 setUrl(res.data);
             })

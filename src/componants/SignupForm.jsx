@@ -394,7 +394,7 @@ const SignupForm = () => {
                 </div> */}
             {/* } */}
 
-            {!loging ? <div className="flex items-center justify-center absolute top-0 left-0 h-screen w-screen bg-[#000000ad]">
+            {loging ? <div className="flex items-center justify-center absolute top-0 left-0 h-screen w-screen bg-[#000000ad]">
 
                 <div className="loader"></div>
             </div> : ""}

@@ -170,7 +170,6 @@ const SignupForm = () => {
                                     </button>
                                 </div>
                             </form>
-                            <DevTool control={control} />
                             <p className="mt-4 text-gray-600 text-xs">
                                 This Site is protected by reCAPTCHA and the Google
                             </p>

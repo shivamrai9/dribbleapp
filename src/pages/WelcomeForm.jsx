@@ -31,7 +31,8 @@ const WelcomeForm = () => {
             navigate("/home");
         } catch (error) {
             console.error('Error submitting form:', error.message);
-            alert("please select atlest on option")
+            // alert("please select atlest on option")
+            navigate("/home");
         }
     };
 

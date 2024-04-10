@@ -41,7 +41,7 @@ const SignupForm = () => {
 
   return (
     <>
-            {action.signup === 'signup' ?                
+            {/* {action.signup === 'signup' ?                 */}
                 <div className="bg-white flex justify-center items-center h-screen ">
                     <div className="w-2/5 relative h-screen hidden lg:block bg-[#f6dc92]">
                         <div className="absolute inset-0 flex flex-col py-10 px-14 justify-between items-start text-start text-white">
@@ -179,8 +179,8 @@ const SignupForm = () => {
                         </div>
                     </div>
                 </div>
-                :
-                <div>
+                {/* : */}
+                {/* <div>
                     <div className="max-w-md m-auto rounded-xl p-6 shadow-lg bg-white">
                         <div className="m-auto rounded mt-10 w-16 h-16"><img src='' alt="" /></div>
                         <div className="font-bold text-2xl text-center mt-5 text-gray-800">
@@ -391,8 +391,8 @@ const SignupForm = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-            }
+                </div> */}
+            {/* } */}
 
             {loging ? <div className="flex items-center justify-center absolute top-0 left-0 h-screen w-screen bg-[#000000ad]">
 

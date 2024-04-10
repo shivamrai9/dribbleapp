@@ -12,9 +12,9 @@ const App = () => {
   const Home = () => {
     return (
       <>
-      <Navbar />
+        <Navbar />
         <section className="px-5 md:px-16 m-auto">
-          
+
         </section>
         <Footer />
       </>
@@ -22,17 +22,17 @@ const App = () => {
   }
   return (
     <>
-    <Router>
+      <Router>
 
-<Routes>
-  <Route exact path="/" element={<Home />} />
-  <Route exact path="/:signup" element={<SignupForm />}/>
-  <Route exact path='/profile' element={<ProfilePage />}>
-    <Route path="setupprofile" element={<ProfileInfo />} />
-    <Route path="welcomeform" element={<WelcomeForm  />} />
-  </Route>
-</Routes>
-</Router>
+        <Routes>
+          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/" element={<SignupForm />} />
+          <Route exact path='/profile' element={<ProfilePage />}>
+            <Route path="setupprofile" element={<ProfileInfo />} />
+            <Route path="welcomeform" element={<WelcomeForm />} />
+          </Route>
+        </Routes>
+      </Router>
 
     </>
   )

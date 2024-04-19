@@ -5,6 +5,10 @@ import ProfilePage from "./pages/ProfilePage";
 import ProfileInfo from "./pages/ProfileInfo";
 import WelcomeForm from "./pages/WelcomeForm";
 import SignupForm from "./componants/SignupForm"
+import { GlobalProvider } from "./GlobalContext";
+
+
+
 const App = () => {
 
 
@@ -39,6 +43,7 @@ const App = () => {
   }
   return (
     <>
+    <GlobalProvider>
       <Router>
 
         <Routes>
@@ -50,7 +55,7 @@ const App = () => {
           </Route>
         </Routes>
       </Router>
-
+      </GlobalProvider>
     </>
   )
 }

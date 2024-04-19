@@ -1,13 +1,24 @@
 import axios from 'axios'
-import React, { useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'; 
-
+import React, { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../GlobalContext';
 const ProfileInfo = () => {
     const [loading, setLoading] = useState(false);
     const [url, setUrl] = useState("");
     const [avatar, setAvatar] = useState(null);
+    const { setGlobalState } = useGlobalContext();
     const fileInputRef = useRef(null);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
+
+
+
+    useEffect(() => {
+        // Load image URL from local storage on component mount
+        const storedImageUrl = localStorage.getItem('imageUrl');
+        if (storedImageUrl) {
+            setGlobalState({ imageUrl: storedImageUrl });
+        }
+    }, []);
 
     const handleButtonClick = () => {
         // Click the hidden file input element
@@ -35,6 +46,10 @@ const ProfileInfo = () => {
             .post("https://dribble-back.onrender.com/user/uploadImage", { image: base64 })
             .then((res) => {
                 setUrl(res.data);
+                const imageUrl = res.data;
+                setGlobalState({ imageUrl });
+                localStorage.setItem('imageUrl', imageUrl); // Store image URL in local storage
+                console.log(imageUrl);
             })
             .then(() => setLoading(false))
             .catch(console.log);
@@ -59,8 +74,8 @@ const ProfileInfo = () => {
     };
 
 
-  return (
-    <>
+    return (
+        <>
             <div className="flex flex-col items-center  bg-white">
                 <div className="max-w-3xl w-full px-6 py-8 ">
                     <h1 className="text-4xl font-bold mb-4">Welcome! Let's create your profile</h1>
@@ -120,7 +135,7 @@ const ProfileInfo = () => {
                         />
                     </div>
 
-                    <button onClick={handleNextButtonClick}  className="bg-pink-500 text-white py-2 px-20 rounded-md hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50">
+                    <button onClick={handleNextButtonClick} className="bg-pink-500 text-white py-2 px-20 rounded-md hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50">
                         Next
                     </button>
                 </div>
@@ -131,7 +146,7 @@ const ProfileInfo = () => {
                 <div className="loader"></div>
             </div> : ""}
         </>
-  )
+    )
 }
 
 export default ProfileInfo

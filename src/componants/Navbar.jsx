@@ -1,8 +1,22 @@
-import React from 'react'
-
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../GlobalContext';
 const Navbar = () => {
-  return (
-    <header className="bg-white ">
+    const navigate = useNavigate();
+    const { state, setGlobalState } = useGlobalContext();
+
+
+    useEffect(() => {
+        // Load image URL from local storage on component mount
+        const storedImageUrl = localStorage.getItem('imageUrl');
+        if (storedImageUrl) {
+          setGlobalState({ imageUrl: storedImageUrl });
+        }
+      }, []);
+
+
+    return (
+        <header className="bg-white ">
             <div className="mx-auto flex h-16 max-w-screen-2xl items-center gap-8 px-4 sm:px-6 lg:px-8">
                 <a className="block text-pink-500" href="#">
                     {/* <span className="sr-only">Home</span> */}
@@ -62,16 +76,34 @@ const Navbar = () => {
                                 </span>
                             </div>
                             <div className='flex items-center'>
-                                <div className=" w-9 h-9 ">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxNpXDhReGbWgHFTwkrGEdrDi4OZikaZGViWtkLHcudA&s" alt="User Profile" className="w-full h-full  rounded-full" />
+                                <div className="w-9 h-9">
+                                    {state.imageUrl ? (
+                                        <img src={state.imageUrl} alt="User Profile" className="w-full h-full rounded-full" />
+                                    ) : (
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            className="h-full w-full text-gray-400"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={2}
+                                                d="M10 21h4a2 2 0 002-2v-1a7 7 0 00-7-7H5a2 2 0 00-2 2v1a2 2 0 002 2h4m0 0V10a3 3 0 013-3h2a3 3 0 013 3v11m-6 0h2"
+                                            />
+                                        </svg>
+                                    )}
                                 </div>
                             </div>
-                            <a
+
+                            <button
                                 className="block rounded-lg bg-pink-500 px-4 py-2.5  font-medium text-white transition hover:bg-pink-600"
-                                href="#"
+                                onClick={() => navigate('/profile/setupprofile')}
                             >
-                                Upload
-                            </a>
+                                Uploads
+                            </button>
                         </div>
 
                         <button
@@ -93,7 +125,7 @@ const Navbar = () => {
                 </div>
             </div>
         </header>
-  )
+    )
 }
 
 export default Navbar
